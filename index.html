@@ -3,10 +3,16 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Naveed Khan | Software Engineer</title>
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous">
 
   <!-- Custom styles -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -14,174 +20,167 @@
 
 <body>
 
-  <div class="container main-container">
+<div class="container-lg main-container py-4">
 
-    <!-- Header -->
-    <header class="header">
-      <h1>Naveed H Khan</h1>
-      <p class="tagline">Full Stack Engineer · .NET · SaaS · E-Commerce</p>
+  <!-- Header -->
+  <header class="header mb-4">
 
-      <div class="header-links">
-        <a href="blog.html">Blog</a>
-        <span>•</span>
-        <a href="https://www.linkedin.com/in/naveed-h-khan/" target="_blank">LinkedIn</a>
+    <div class="d-flex align-items-center gap-3 flex-wrap">
+      <img src="assets/img/profile.jpg"
+           alt="Naveed Khan"
+           class="profile-pic">
+
+      <div>
+        <h1 class="mb-1">Naveed H Khan</h1>
+
+        <p class="tagline mb-2">
+          Full-stack software engineer specializing in scalable systems,
+          DevOps automation, and infrastructure as code.
+        </p>
+
+        <div class="header-links">
+          <a href="blog.html">Blog</a>
+          <span class="mx-2">•</span>
+          <a href="https://www.linkedin.com/in/naveed-h-khan/" target="_blank">LinkedIn</a>
+        </div>
       </div>
-    </header>
+    </div>
 
-    <!-- Content -->
-    <div class="row content">
+  </header>
 
-      <!-- Left column -->
-      <div class="col-md-4 sidebar">
+  <!-- Main content -->
+  <div class="row g-4">
 
-        <!-- Skills -->
-        <h4 class="section-title">Skills</h4>
+    <!-- LEFT COLUMN -->
+    <aside class="col-lg-4 sidebar mt-5">
 
-        <p class="muted">
-          <strong>Frontend</strong><br>
+      <!-- Skills -->
+      <section class="mb-4">
+        <h4 class="section-title mt-0">Skills</h4>
+
+        <p class="muted mb-2"><strong>Frontend</strong><br>
           HTML, CSS, JavaScript, jQuery, Bootstrap
         </p>
 
-        <p class="muted">
-          <strong>Backend</strong><br>
+        <p class="muted mb-2"><strong>Backend</strong><br>
           C# (.NET), Node.js, TypeScript, Core Java
         </p>
 
-        <p class="muted">
-          <strong>Databases</strong><br>
+        <p class="muted mb-2"><strong>Databases</strong><br>
           Microsoft SQL Server, PostgreSQL, MongoDB
         </p>
 
-        <p class="muted">
-          <strong>DevOps & Infrastructure</strong><br>
-          Linux, CI/CD (Jenkins), Docker, Continuous Monitoring
-          (Prometheus, Grafana)
+        <p class="muted mb-2"><strong>DevOps</strong><br>
+          Linux, CI/CD (Jenkins), Docker, Prometheus, Grafana
         </p>
 
-        <p class="muted">
-          <strong>Product & Delivery</strong><br>
-          Requirement gathering with end users, business and system
-          design analysis, software implementation, training
+        <p class="muted mb-2"><strong>Product & Delivery</strong><br>
+          Requirement gathering with end users, business & system design,
+          software implementation, training
         </p>
 
-        <p class="muted">
-          <strong>Certification</strong><br>
+        <p class="muted mb-0"><strong>Certification</strong><br>
           Certified Scrum Product Owner (CSPO) –
           <a href="https://www.scrumalliance.org/" target="_blank">
             Scrum Alliance
           </a>
         </p>
+      </section>
 
-
-
-
-
-        <!-- Education -->
+      <!-- Education -->
+      <section>
         <h4 class="section-title">Education</h4>
 
-        <p class="muted">
+        <p class="muted mb-2">
           <strong>Diploma in Computer Science & Engineering</strong><br>
           MEI Polytechnic, Bangalore
         </p>
 
-        <p class="muted">
+        <p class="muted mb-0">
           <strong>Graduation in Commerce</strong><br>
-          Pursued to strengthen accounting, finance, and business domain knowledge,
-          directly supporting my work on ERP and GST-based systems.
+          Strengthened accounting, finance, and business domain knowledge
+          supporting ERP and GST-based systems.
         </p>
+      </section>
 
-      </div>
+    </aside>
 
-      <!-- Right column -->
-      <div class="col-md-8 main">
+    <!-- RIGHT COLUMN -->
+    <main class="col-lg-8 main">
 
-        <!-- About -->
+      <!-- About -->
+      <section class="mb-4">
         <h4 class="section-title">About</h4>
 
-        <p class="muted">
-          Software engineer based in Bangalore with over a decade of experience building
-          e-commerce, accounting, inventory, and subscription-based SaaS systems using
-          .NET, MS SQL, and PostgreSQL.
+        <p>
+          Software engineer based in Bangalore with close to two decades of hands-on
+          experience building e-commerce, accounting, inventory, and subscription-based
+          SaaS systems using .NET, MS SQL, and PostgreSQL.
         </p>
 
-        <p class="muted">
-          My career began in a manufacturing environment during a transition from manual
-          to computerized operations. This shaped my focus on usability, clarity, and
-          designing software around real-world workflows rather than abstractions.
+        <p>
+          I began my career in an environment where software was closely tied to
+          day-to-day business operations, working directly with users and real workflows.
+          This shaped my focus on usability, clarity, and practical system design.
         </p>
 
-        <p class="muted">
-          Over the years, I’ve worked across multiple technology stacks and domains,
-          delivering systems that are reliable, maintainable, and used in production
-          for many years.
+        <p class="mb-0">
+          Over the years, I’ve continuously adapted to evolving technologies and platforms,
+          delivering systems that remain reliable, maintainable, and relevant in
+          long-term production use.
         </p>
+      </section>
 
-        <!-- Experience -->
+      <!-- Experience -->
+      <section>
         <h4 class="section-title">Experience</h4>
 
         <p>
           I have extensive experience designing and developing business-critical software
-          across manufacturing, accounting, education, and retail distribution domains.
-          My work focuses on building integrated systems that solve operational problems
-          reliably at scale.
+          across manufacturing, accounting, education, and retail distribution domains,
+          with a strong focus on integrated, scalable systems.
         </p>
 
         <p>
-          Early in my career, I designed and developed an inventory and store management
-          system for a manufacturing organization. The solution handled department-level
-          material indents, in-house stock issues, automatic conversion of shortages into
-          purchase indents, purchase order generation, goods inward processing, and final
-          issuance against original requests.
+          I designed and developed inventory and store management systems covering
+          material indents, stock issuance, purchase workflows, goods inward processing,
+          minimum stock alerts, and production planning with BOM-based costing.
         </p>
 
         <p>
-          The system enforced minimum stock levels with automated alerts and was integrated
-          with production planning and control modules to support Bill of Materials (BOM)
-          management and accurate production cost calculations.
+          I later built full-fledged accounting and inventory platforms including
+          bookkeeping, ledger management, GST automation, input tax credit adjustments,
+          and statutory reporting.
         </p>
 
         <p>
-          I later built full-fledged accounting and inventory systems providing end-to-end
-          bookkeeping, ledger management, and transactional accounting. These included a
-          GST module that automated tax calculations, input tax credit adjustments, and
-          statutory reporting, significantly easing compliance.
+          In the education domain, I developed academic management systems (SIS + LMS)
+          deployed at institutions such as <strong>IIM Ahmedabad</strong> and
+          <strong>IIM Calcutta</strong>, including India’s first biometric-based
+          timetable and attendance system.
         </p>
 
-        <p>
-          In the education domain, I designed and implemented an academic management system
-          combining Student Information System (SIS) and Learning Management System (LMS)
-          capabilities. The platform was deployed at reputed institutions including
-          <strong>IIM Ahmedabad</strong> and <strong>IIM Calcutta</strong>.
-        </p>
-
-        <p>
-          At <strong>IIM Calcutta</strong>, I also planned, designed, and implemented a
-          biometric attendance system integrated with student timetables. This became the
-          first biometric-based student timetable and attendance system of its kind in India.
-        </p>
-
-        <p>
+        <p class="mb-0">
           Currently, I work at
           <a href="https://logicsoft.co.in/" target="_blank">
             <strong>Logic Soft Pvt. Ltd.</strong>
           </a>,
-          an organization specializing in book distribution systems with decades of domain
-          expertise. The solutions are used by major bookstores in India and abroad to manage
-          warehouses, retail outlets, book fairs, and online sales through e-commerce platforms.
+          a Chennai-based company specializing in software solutions for the book trade
+          industry. I contribute to web-based products such as e-commerce platforms and
+          fair management systems supporting large-scale retail and distribution operations.
         </p>
+      </section>
 
-
-
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-      © Naveed Khan
-    </footer>
+    </main>
 
   </div>
 
-</body>
+  <!-- Footer -->
+  <footer class="footer mt-5">
+    © Naveed Khan
+  </footer>
 
+</div>
+
+</body>
 </html>
