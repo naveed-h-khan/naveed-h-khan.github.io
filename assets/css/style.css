@@ -149,5 +149,16 @@ body {
   margin-bottom: 8px;
 }
 
+/* Keep header aligned with main content */
+.header-inner {
+  max-width: 960px; /* match blog/article width */
+}
+
+.blog-intro h2 {
+  font-weight: 600;
+}
+
+
+
 
 
