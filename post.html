@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog | Naveed Khan</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+  <div id="content"></div>
+  <a href="blog.html">← Back to blog</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get('file');
+
+  if (file) {
+    $('#content').load('posts/' + file);
+  }
+</script>
+
+</body>
+</html>
