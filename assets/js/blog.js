@@ -1,12 +1,12 @@
 $(function () {
   const posts = [
     {
-      title: "How I Solved a Production Deadlock",
+      title: "Blog1",
       file: "001.html",
       date: "25 Jan 2026"
     },
     {
-      title: "Why Lazy<T> Saved Our Connection Pool",
+      title: "Blog2",
       file: "002.html",
       date: "28 Jan 2026"
     }
