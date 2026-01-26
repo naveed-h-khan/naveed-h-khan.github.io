@@ -1,50 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog | Naveed Khan</title>
+    <meta charset="UTF-8">
+    <title>Blog Post</title>
 
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles -->
-  <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-
-  <div class="container-lg main-container py-4">
-
-    <!-- Header -->
+<div class="container-lg py-4">
     <div id="site-header"></div>
 
-    <!-- Post content -->
-    <main id="post-content" class="col-lg-8 mx-auto"></main>
+    <article id="post-content" class="col-lg-10 mx-auto"></article>
+</div>
 
-    <!-- Footer -->
-    <footer class="footer mt-5">
-      © Naveed Khan
-    </footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="assets/js/site.js"></script>
 
-  </div>
-
-  <script>
+<script>
+(async function () {
     const params = new URLSearchParams(window.location.search);
-    const file = params.get('file');
+    const file = params.get("file");
 
-    if (file) {
-      fetch('posts/' + file)
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('post-content').innerHTML = html;
-        });
+    if (!file) {
+        document.getElementById("post-content").innerHTML =
+            "<p class='text-muted'>No post specified.</p>";
+        return;
     }
-  </script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="/assets/js/site.js"></script>
 
+    try {
+        const res = await fetch(`posts/${file}`);
+        if (!res.ok) throw new Error(res.status);
+
+        document.getElementById("post-content").innerHTML =
+            await res.text();
+    } catch {
+        document.getElementById("post-content").innerHTML =
+            "<p class='text-danger'>Failed to load post.</p>";
+    }
+})();
+</script>
 </body>
-
 </html>

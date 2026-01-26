@@ -1,13 +1,272 @@
-<h1>Blog 2</h1>
-<p class="text-muted">January 15, 2026</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Smell: When Clever Code Becomes a Liability</title>
 
-<p>
-  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-  accusantium doloremque laudantium, totam rem aperiam.
-</p>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
 
-<p>
-  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-  aut fugit, sed quia consequuntur magni dolores eos qui ratione
-  voluptatem sequi nesciunt.
-</p>
+<style>
+/* Light gray, readable code blocks (no JS, no libs) */
+.code-block {
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #24292f;
+}
+.code-block .kw { color: #cf222e; font-weight: 500; }
+.code-block .type { color: #0550ae; }
+.code-block .fn { color: #8250df; }
+.code-block .cm { color: #6e7781; font-style: italic; }
+</style>
+</head>
+
+<body>
+<div class="container-lg main-container py-4">
+<div id="site-header"></div>
+
+<article class="col-lg-10 mx-auto">
+
+<h1>Code Smell: When Clever Code Becomes a Liability</h1>
+
+<p class="text-muted">January 26, 2026 · Software Engineering · Code Quality</p>
+
+<p>Modern programming languages give us enormous power.
+Generics, abstractions, meta-programming, dependency injection, functional pipelines—these tools exist for good reasons, and when used well, they enable reuse, flexibility, and scalability.</p>
+
+<p>But power cuts both ways.</p>
+
+<p>In this post, I want to talk about a specific kind of code smell I see frequently in real-world projects:
+<strong>overuse of advanced language features—especially generics—in ways that hurt readability, maintainability, and developer experience.</strong></p>
+
+<p>I primarily work with C#, so the examples and thoughts here are grounded in that ecosystem, but the principle applies to any high-level language.</p>
+
+<h2>Code Is Written for Humans, Not Computers</h2>
+
+<p>Let’s start with a fundamental belief:</p>
+
+<p><strong>Code is not written for computers. It is written for humans.</strong></p>
+
+<p>If our primary goal were to communicate with machines, we would still be writing assembly or machine code.
+High-level languages like C#, Java, Python, and others evolved specifically to optimize human understanding.</p>
+
+<p>The fact that a compiler or interpreter can process the code is a byproduct, not the purpose.</p>
+
+<p>This perspective changes how we evaluate “good” code.</p>
+
+<h2>The Power—and Trap—of Generics in C#</h2>
+
+<p>Generics in C# are a powerful feature:</p>
+
+<ul>
+<li>They enable code reuse</li>
+<li>They reduce duplication</li>
+<li>They improve type safety</li>
+<li>They allow building flexible frameworks and libraries</li>
+</ul>
+
+<p>Used judiciously, they are excellent.</p>
+
+<p>But overused or misused, they introduce a subtle yet serious code smell.</p>
+
+<h2>The Generic Overuse Code Smell</h2>
+
+<p>Here are the most common problems I’ve observed when generics are pushed too far.</p>
+
+<h3>1. Reduced Readability</h3>
+
+<p>When types are deferred, nested, or abstracted behind multiple generic layers, the intent of the code becomes harder to grasp.</p>
+
+<ul>
+<li>Jump between files</li>
+<li>Inspect constraints</li>
+<li>Infer types mentally</li>
+<li>Trace implementations across interfaces</li>
+</ul>
+
+<p>This increases cognitive load, even for experienced developers.</p>
+
+<p>Readable code should communicate what it does at a glance—not require detective work.</p>
+
+<h3>2. Steep Learning Curve for Junior Developers</h3>
+
+<p>Highly generic code disproportionately affects junior and mid-level developers.</p>
+
+<ul>
+<li>They hesitate to modify code they don’t fully understand</li>
+<li>They fear breaking invisible contracts</li>
+<li>They copy patterns without comprehension</li>
+<li>Feature development slows down</li>
+</ul>
+
+<p>A codebase should teach developers how it works, not intimidate them into silence.</p>
+
+<p>If extending a feature requires understanding a maze of generic abstractions, something is wrong.</p>
+
+<h3>3. Debugging Becomes Harder Than Necessary</h3>
+
+<ul>
+<li>Stack traces become harder to read</li>
+<li>Runtime types don’t match mental models</li>
+<li>Breakpoints land far from business logic</li>
+</ul>
+
+<p>You end up debugging the abstraction instead of the problem.</p>
+
+<p>Abstractions should reduce debugging effort—not multiply it.</p>
+
+<h3>4. Over-Abstraction Hides Business Intent</h3>
+
+<p>One of the biggest red flags is this question:</p>
+
+<blockquote>“What does this code actually do?”</blockquote>
+
+<p>If the answer isn’t obvious without deep exploration, the abstraction has failed.</p>
+
+<p>Business rules, workflows, and domain logic should be explicit and visible, not buried inside generic pipelines.</p>
+
+<h3>5. Maintenance Cost Grows Over Time</h3>
+
+<p>Code lives far longer than we expect.</p>
+
+<ul>
+<li>Context is lost</li>
+<li>Original authors may be gone</li>
+<li>Assumptions are forgotten</li>
+</ul>
+
+<p>Highly abstract code ages poorly unless rigorously documented and consistently maintained.</p>
+
+<p>Maintainability is not about how elegant code looks today—it’s about how easily it can be modified tomorrow.</p>
+
+<h2>Bad Example: Over-Abstracted Generic Code</h2>
+
+<pre class="code-block"><code>
+<span class="kw">public</span> <span class="kw">interface</span> <span class="type">IProcessor</span>&lt;<span class="type">TInput</span>, <span class="type">TResult</span>&gt;
+{
+    <span class="type">TResult</span> <span class="fn">Process</span>(<span class="type">TInput</span> input);
+}
+
+<span class="kw">public</span> <span class="kw">class</span> <span class="type">Handler</span>&lt;<span class="type">TInput</span>, <span class="type">TResult</span>, <span class="type">TProcessor</span>&gt;
+    <span class="kw">where</span> <span class="type">TProcessor</span> : <span class="type">IProcessor</span>&lt;<span class="type">TInput</span>, <span class="type">TResult</span>&gt;
+{
+    <span class="kw">private</span> <span class="kw">readonly</span> <span class="type">TProcessor</span> _processor;
+
+    <span class="kw">public</span> <span class="fn">Handler</span>(<span class="type">TProcessor</span> processor)
+    {
+        _processor = processor;
+    }
+
+    <span class="kw">public</span> <span class="type">TResult</span> <span class="fn">Handle</span>(<span class="type">TInput</span> input)
+    {
+        <span class="kw">return</span> _processor.<span class="fn">Process</span>(input);
+    }
+}
+</code></pre>
+
+<h2>Good Example: Explicit and Readable Code</h2>
+
+<pre class="code-block"><code>
+<span class="kw">public</span> <span class="kw">class</span> <span class="type">OrderService</span>
+{
+    <span class="kw">public</span> <span class="type">OrderResult</span> <span class="fn">ProcessOrder</span>(<span class="type">Order</span> order)
+    {
+        <span class="fn">Validate</span>(order);
+        <span class="fn">Save</span>(order);
+        <span class="kw">return</span> <span class="fn">CreateResult</span>(order);
+    }
+
+    <span class="kw">private</span> <span class="kw">void</span> <span class="fn">Validate</span>(<span class="type">Order</span> order)
+    {
+        <span class="cm">// validation logic</span>
+    }
+
+    <span class="kw">private</span> <span class="kw">void</span> <span class="fn">Save</span>(<span class="type">Order</span> order)
+    {
+        <span class="cm">// persistence logic</span>
+    }
+
+    <span class="kw">private</span> <span class="type">OrderResult</span> <span class="fn">CreateResult</span>(<span class="type">Order</span> order)
+    {
+        <span class="kw">return</span> <span class="kw">new</span> <span class="type">OrderResult</span> { Success = <span class="kw">true</span> };
+    }
+}
+</code></pre>
+
+<h2>“Good Code Never Needs Comments” — With a Caveat</h2>
+
+<p>If code needs comments to explain what it does, the code itself is the problem.</p>
+
+<p>However, when advanced language features are used—generics, reflection, expression trees, meta-programming—
+comments become essential to explain why the abstraction exists.</p>
+
+<h2>Developer Experience Matters More Than Cleverness</h2>
+
+<p>Clever code is fun to write.
+Simple code is valuable to maintain.</p>
+
+<ul>
+<li>Readability</li>
+<li>Predictability</li>
+<li>Approachability</li>
+<li>Long-term evolution</li>
+</ul>
+
+<p>Duplication is often cheaper than confusion.</p>
+
+<h2>When Advanced Concepts Are Worth It</h2>
+
+<p>This is not an argument against generics or abstractions altogether.</p>
+
+<p>They are justified when:</p>
+
+<ul>
+<li>The benefit is significant and measurable</li>
+<li>The abstraction is stable</li>
+<li>The audience is experienced</li>
+<li>The complexity is well-documented</li>
+<li>The alternative is clearly worse</li>
+</ul>
+
+<p>Business logic is usually not.</p>
+
+<h2>A Practical Rule of Thumb</h2>
+
+<p>Before introducing a complex abstraction, ask:</p>
+
+<blockquote>“Will the next developer understand this in five minutes?”</blockquote>
+
+<p>If the answer is no:</p>
+
+<ul>
+<li>Simplify it</li>
+<li>Make it explicit</li>
+<li>Or clearly document the rationale</li>
+</ul>
+
+<p>Your future self—and your teammates—will thank you.</p>
+
+<h2>Final Thoughts</h2>
+
+<p>High-level languages exist to help humans reason about systems.
+When our code stops communicating clearly, it stops serving its purpose.</p>
+
+<p>Use powerful features.
+But use them judiciously.</p>
+
+<p>Because the true measure of good code is not how clever it is—but how easily it can be understood, trusted, and changed.</p>
+
+</article>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>
