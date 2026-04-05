@@ -1,5 +1,5 @@
 $(function () {
-  const assetVersion = "20260404-1";
+  const assetVersion = "20260405-3";
 
   $("#site-header").load(`/partials/header.html?v=${assetVersion}`, function () {
     const path = window.location.pathname.toLowerCase();
