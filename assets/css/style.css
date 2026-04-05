@@ -1,14 +1,14 @@
 :root {
-  --bg: #fffdfc;
-  --bg-soft: #fff7f8;
+  --bg: #ffffff;
+  --bg-soft: #f3f8ff;
   --surface: #ffffff;
-  --surface-soft: #fff1f2;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --border: rgba(159, 18, 57, 0.12);
-  --accent: #be123c;
-  --accent-deep: #9f1239;
-  --accent-soft: #ffe4e6;
+  --surface-soft: #eaf3ff;
+  --text: #132238;
+  --muted: #66768f;
+  --border: rgba(37, 99, 235, 0.14);
+  --accent: #2563eb;
+  --accent-deep: #1d4ed8;
+  --accent-soft: #dbeafe;
   --shadow: 0 24px 60px rgba(20, 28, 58, 0.08);
   --radius-xl: 28px;
   --radius-lg: 22px;
@@ -32,7 +32,7 @@ body {
   font-family: "Poppins", "Segoe UI", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(190, 18, 60, 0.07), transparent 22rem),
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 22rem),
     linear-gradient(180deg, #ffffff 0%, var(--bg-soft) 100%);
   line-height: 1.7;
   font-size: 16px;
@@ -233,7 +233,7 @@ img {
 .btn-accent {
   background: var(--accent);
   color: #ffffff;
-  box-shadow: 0 16px 34px rgba(190, 18, 60, 0.2);
+  box-shadow: 0 16px 34px rgba(37, 99, 235, 0.22);
 }
 
 .btn-outline-accent {
